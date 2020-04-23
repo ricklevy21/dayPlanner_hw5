@@ -26,14 +26,15 @@ $(document).ready(function() {
     var renderCal = function(){
     for (var i = 0; i < hoursOfDay.length; i++){
        var currentHour = hoursOfDay[i];
-       var timeBlock = $("<div>").attr("class", "row");
+       var timeBlock = $("<div>").attr("class", "row time-block");
        $(".container").append(timeBlock);
-       var hour = $("<div>").attr("class", ".col-lg-1");
-       var notes = $("<textarea>").attr("class", "col-lg-10 description");
+       var hour = $("<div>").attr("class", "col-lg-1 hour");
+       hour.text(currentHour);
+       var notes = $("<textarea>").attr("class", "col-lg-10");
        var save = $("<button>").attr("class", "col-lg-1 saveBtn");
-
+       save.attr("id", currentHour);
        timeBlock.append(hour, notes, save);
-       console.log("row: "+hoursOfDay[i])
+       console.log("row: "+currentHour)
     }        
     }
     
