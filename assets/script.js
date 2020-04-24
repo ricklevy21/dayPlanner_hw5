@@ -1,7 +1,62 @@
 //GLOBAL VARIABLES
 //============================================================================================================================================================    
 //array for the hours of the work day
-var hoursOfDay = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+var hoursOfDay = [
+    {
+        display: "9 AM",
+        military: "9",
+        time: moment("9:00am", "h:mma"),
+        name: "nine"
+    },
+    {
+        display: "10 AM",
+        military: "10",
+        time: moment("10:00am", "h:mma"),
+        name: "ten"
+    },
+    {
+        display: "11 AM",
+        military: "11",
+        time: moment("11:00am", "h:mma"),
+        name: "eleven"
+    },
+    {
+        display: "12 PM",
+        military: "12",
+        time: moment("12:00pm", "h:mma"),
+        name: "twelve"
+    },
+    {
+        display: "1 PM",
+        military: "13",
+        time: moment("1:00pm", "h:mma"),
+        name: "one"
+    },
+    {
+        display: "2 PM",
+        military: "14",
+        time: moment("2:00pm", "h:mma"),
+        name: "two"
+    },
+    {
+        display: "3 PM",
+        military: "15",
+        time: moment("3:00pm", "h:mma"),
+        name: "three"
+    },
+    {
+        display: "4 PM",
+        military: "16",
+        time: moment("4:00pm", "h:mma"),
+        name: "four"
+    },
+    {
+        display: "5 PM",
+        military: "17",
+        time: moment("5:00pm", "h:mma"),
+        name: "five"
+    },
+];
 
 //element for the date display
 var dateJumbo = $("<p>");
@@ -12,34 +67,55 @@ var save = $("<button>");
 
 var hourlyNotes = {}
 
+var timeNow = moment().hours();
+
+
+
+
+
+
+
+
+
 //FUNCTIONS
 //============================================================================================================================================================
 $(document).ready(function() {
     
-    //function to display the current date in the jumbotron
+    //function to display the current date in the jumbotron============================>WORKING
     var displayDate = function(){
         dateJumbo.text(moment().format('MMMM DD, YYYY'));
         $("#currentDay").append(dateJumbo);
     }
     
-    //function to render the calendar on the page=======================================>WORKING!
+    //function to render the calendar on the page=======================================>WORKING
     var renderCal = function(){
     for (var i = 0; i < hoursOfDay.length; i++){
        var currentHour = hoursOfDay[i];
        var timeBlock = $("<div>").attr("class", "row time-block");
        $(".container").append(timeBlock);
-       var hour = $("<div>").attr("class", "col-lg-1 hour");
-       hour.text(currentHour);
-       var notes = $("<textarea>").attr("class", "col-lg-10");
+       var hour = $("<div>").attr("class", "col-lg-1 hour ");
+       hour.text(currentHour.display);
+       var notes = $("<textarea>").attr("class", "col-lg-10 description");
+       notes.attr("id", currentHour.name);
        var save = $("<button>").attr("class", "col-lg-1 saveBtn");
-       save.attr("id", currentHour);
+       save.attr("id", currentHour.name);
        timeBlock.append(hour, notes, save);
-       console.log("row: "+currentHour)
-    }        
-    }
+       var timeNow = moment().hours();
+
+       //color code textarea based on the current time
+       if (parseInt(currentHour.military) === timeNow){
+           notes.addClass("present");
+       } else if (parseInt(currentHour.military) < timeNow){
+           notes.addClass("past")
+       } else if (parseInt(currentHour.military) > timeNow){
+           notes.addClass("future")
+       } else {
+           console.log("ERROR!")
+       }
+     }        
+    };    
+
     
-    
-    renderCal();
     
     // EVENT LISTENERS
     //============================================================================================================================================================
@@ -50,8 +126,10 @@ $(document).ready(function() {
     //PAGE CONTENT
     //============================================================================================================================================================
     displayDate();
-    
-    
+    renderCal();
+
+  
+
     
     
     
@@ -69,9 +147,7 @@ $(document).ready(function() {
     function that converts array of objects to array of strings before sending to local storage
     function that converts array of strings back to objects when retrieving from storage
     
-    
-    function that appends a new time-block row for every hour of the work day
-    
+        
     */
    
    //end of document.ready
