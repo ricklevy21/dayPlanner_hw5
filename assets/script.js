@@ -106,51 +106,98 @@ $(document).ready(function() {
            notes.addClass("future")
        }
      }
+        //fetch locally stored data
+        var notesFromLocal = localStorage.getItem("hourlyNotes")
+        var notesFromLocalObj = JSON.parse(notesFromLocal);
+        console.log(notesFromLocalObj)
+
+        //add everything from local storage back into the hourlyNotes object
+        hourlyNotes.nineNote = notesFromLocalObj.nineNote;
+        hourlyNotes.tenNote = notesFromLocalObj.tenNote;
+        hourlyNotes.elevenNote = notesFromLocalObj.elevenNote;
+        hourlyNotes.twelveNote = notesFromLocalObj.twelveNote;
+        hourlyNotes.oneNote = notesFromLocalObj.oneNote;
+        hourlyNotes.twoNote = notesFromLocalObj.twoNote;
+        hourlyNotes.threeNote = notesFromLocalObj.threeNote;
+        hourlyNotes.fourNote = notesFromLocalObj.fourNote;
+        hourlyNotes.fiveNote = notesFromLocalObj.fiveNote;
+
+        //add locally stored notes to calendar
+        $("textarea#nine").text(notesFromLocalObj.nineNote)
+        $("textarea#ten").text(notesFromLocalObj.tenNote)
+        $("textarea#eleven").text(notesFromLocalObj.elevenNote)
+        $("textarea#twelve").text(notesFromLocalObj.twelveNote)
+        $("textarea#one").text(notesFromLocalObj.oneNote)
+        $("textarea#two").text(notesFromLocalObj.twoNote)
+        $("textarea#three").text(notesFromLocalObj.threeNote)
+        $("textarea#four").text(notesFromLocalObj.fourNote)
+        $("textarea#five").text(notesFromLocalObj.fiveNote)
+
+
+
         //functions that capture user's input text and adds it to the object hourlyNotes
         var ninenotesToObj = function(){
             var nineInput = $("textarea#nine").val();
             hourlyNotes.nineNote = nineInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var tennotesToObj = function(){
             var tenInput = $("textarea#ten").val();
             hourlyNotes.tenNote = tenInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var elevennotesToObj = function(){
             var elevenInput = $("textarea#eleven").val();
             hourlyNotes.elevenNote = elevenInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var twelvenotesToObj = function(){
             var twelveInput = $("textarea#twelve").val();
             hourlyNotes.twelveNote = twelveInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var onenotesToObj = function(){
             var oneInput = $("textarea#one").val();
             hourlyNotes.oneNote = oneInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var twonotesToObj = function(){
             var twoInput = $("textarea#two").val();
             hourlyNotes.twoNote = twoInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var threenotesToObj = function(){
             var threeInput = $("textarea#three").val();
             hourlyNotes.threeNote = threeInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var fournotesToObj = function(){
             var fourInput = $("textarea#four").val();
             hourlyNotes.fourNote = fourInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
         var fivenotesToObj = function(){
             var fiveInput = $("textarea#five").val();
             hourlyNotes.fiveNote = fiveInput;
             console.log(hourlyNotes)
+            localStorage.setItem("hourlyNotes", JSON.stringify(hourlyNotes));
+
         }
      
      
@@ -166,16 +213,9 @@ $(document).ready(function() {
      $("button#four").on("click", fournotesToObj);
      $("button#five").on("click", fivenotesToObj);
 
-
-
-
-     
-     
     };
 
 
-
- 
     
     
     // EVENT LISTENERS
@@ -195,7 +235,6 @@ $(document).ready(function() {
     //TO DO
     //============================================================================================================================================================
     /*
-    array of objects to store the calendar items in
     function that saves the user's input to local storage when the save button is clicked
     function that converts array of objects to array of strings before sending to local storage
     function that converts array of strings back to objects when retrieving from storage
