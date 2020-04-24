@@ -1,6 +1,6 @@
 //GLOBAL VARIABLES
 //============================================================================================================================================================    
-//array for the hours of the work day
+//array for the hours of the work day and associated information
 var hoursOfDay = [
     {
         display: "9 AM",
@@ -62,13 +62,8 @@ var hoursOfDay = [
 var dateJumbo = $("<p>");
 
 
-//element for the save buttons
-var save = $("<button>");
-
+//object to store the user's notes
 var hourlyNotes = {}
-
-var timeNow = moment().hours();
-
 
 
 
@@ -109,18 +104,82 @@ $(document).ready(function() {
            notes.addClass("past")
        } else if (parseInt(currentHour.military) > timeNow){
            notes.addClass("future")
-       } else {
-           console.log("ERROR!")
        }
-     }        
-    };    
+     }
+        //functions that capture user's input text and adds it to the object hourlyNotes
+        var ninenotesToObj = function(){
+            var nineInput = $("textarea#nine").val();
+            hourlyNotes.nineNote = nineInput;
+            console.log(hourlyNotes)
+        }
+        var tennotesToObj = function(){
+            var tenInput = $("textarea#ten").val();
+            hourlyNotes.tenNote = tenInput;
+            console.log(hourlyNotes)
+        }
+        var elevennotesToObj = function(){
+            var elevenInput = $("textarea#eleven").val();
+            hourlyNotes.elevenNote = elevenInput;
+            console.log(hourlyNotes)
+        }
+        var twelvenotesToObj = function(){
+            var twelveInput = $("textarea#twelve").val();
+            hourlyNotes.twelveNote = twelveInput;
+            console.log(hourlyNotes)
+        }
+        var onenotesToObj = function(){
+            var oneInput = $("textarea#one").val();
+            hourlyNotes.oneNote = oneInput;
+            console.log(hourlyNotes)
+        }
+        var twonotesToObj = function(){
+            var twoInput = $("textarea#two").val();
+            hourlyNotes.twoNote = twoInput;
+            console.log(hourlyNotes)
+        }
+        var threenotesToObj = function(){
+            var threeInput = $("textarea#three").val();
+            hourlyNotes.threeNote = threeInput;
+            console.log(hourlyNotes)
+        }
+        var fournotesToObj = function(){
+            var fourInput = $("textarea#four").val();
+            hourlyNotes.fourNote = fourInput;
+            console.log(hourlyNotes)
+        }
+        var fivenotesToObj = function(){
+            var fiveInput = $("textarea#five").val();
+            hourlyNotes.fiveNote = fiveInput;
+            console.log(hourlyNotes)
+        }
+     
+     
 
+    //eventListeners
+     $("button#nine").on("click", ninenotesToObj);
+     $("button#ten").on("click", tennotesToObj);
+     $("button#eleven").on("click", elevennotesToObj);
+     $("button#twelve").on("click", twelvenotesToObj);
+     $("button#one").on("click", onenotesToObj);
+     $("button#two").on("click", twonotesToObj);
+     $("button#three").on("click", threenotesToObj);
+     $("button#four").on("click", fournotesToObj);
+     $("button#five").on("click", fivenotesToObj);
+
+
+
+
+     
+     
+    };
+
+
+
+ 
     
     
     // EVENT LISTENERS
     //============================================================================================================================================================
-    
-    
     
     
     //PAGE CONTENT
@@ -136,12 +195,6 @@ $(document).ready(function() {
     //TO DO
     //============================================================================================================================================================
     /*
-    
-    function that color codes each input field based on the time of day. Likely use an if statement
-    function to set interval to reset above color coding every hour
-    function to figure out what time it is (and store it in a variable?)
-    
-    
     array of objects to store the calendar items in
     function that saves the user's input to local storage when the save button is clicked
     function that converts array of objects to array of strings before sending to local storage
