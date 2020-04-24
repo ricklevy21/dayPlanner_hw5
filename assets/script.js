@@ -109,9 +109,10 @@ $(document).ready(function() {
         //fetch locally stored data
         var notesFromLocal = localStorage.getItem("hourlyNotes")
         var notesFromLocalObj = JSON.parse(notesFromLocal);
-        console.log(notesFromLocalObj)
+        //console.log(notesFromLocalObj)
 
         //add everything from local storage back into the hourlyNotes object
+        if (notesFromLocalObj !== null){
         hourlyNotes.nineNote = notesFromLocalObj.nineNote;
         hourlyNotes.tenNote = notesFromLocalObj.tenNote;
         hourlyNotes.elevenNote = notesFromLocalObj.elevenNote;
@@ -121,7 +122,9 @@ $(document).ready(function() {
         hourlyNotes.threeNote = notesFromLocalObj.threeNote;
         hourlyNotes.fourNote = notesFromLocalObj.fourNote;
         hourlyNotes.fiveNote = notesFromLocalObj.fiveNote;
-
+        }
+        
+        if (notesFromLocalObj !== null){
         //add locally stored notes to calendar
         $("textarea#nine").text(notesFromLocalObj.nineNote)
         $("textarea#ten").text(notesFromLocalObj.tenNote)
@@ -132,7 +135,7 @@ $(document).ready(function() {
         $("textarea#three").text(notesFromLocalObj.threeNote)
         $("textarea#four").text(notesFromLocalObj.fourNote)
         $("textarea#five").text(notesFromLocalObj.fiveNote)
-
+        }
 
 
         //functions that capture user's input text and adds it to the object hourlyNotes
