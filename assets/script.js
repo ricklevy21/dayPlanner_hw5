@@ -88,12 +88,12 @@ $(document).ready(function() {
        var currentHour = hoursOfDay[i];
        var timeBlock = $("<div>").attr("class", "row time-block");
        $(".container").append(timeBlock);
-       var hour = $("<div>").attr("class", "col-lg-1 hour ");
+       var hour = $("<div>").attr("class", "col-1 hour ");
        hour.text(currentHour.display);
-       var notes = $("<textarea>").attr("class", "col-lg-10 description");
+       var notes = $("<textarea>").attr("class", "col-10 description");
        notes.attr("id", currentHour.name);
        //var saveIcon = ("<i>").attr("class", "fas fa-save")
-       var save = $("<button>").attr("class", "col-lg-1 saveBtn");
+       var save = $("<button>").attr("class", "col-1 saveBtn");
        save.html("<i class='fas fa-save'></i>")
        save.attr("id", currentHour.name);
        timeBlock.append(hour, notes, save);
